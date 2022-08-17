@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
                 tvResult.text = if (number.isPrimeNumber()) "Es primo"
                 else "No es primo"
             } catch (e: Exception) {
-                Toast.makeText(this, "Ingrese algun valor", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Ingrese algún valor", Toast.LENGTH_SHORT).show()
             }
         }
 
