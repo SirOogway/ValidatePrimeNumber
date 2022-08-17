@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import com.innova.validateprimenumber.extensions.isPrimeNumber
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,25 +15,17 @@ class MainActivity : AppCompatActivity() {
 
         val etEnterNumber: EditText = findViewById(R.id.etEnterNumber)
         val btnValidate: Button = findViewById(R.id.btnValidate)
+        val tvResult: TextView = findViewById(R.id.tvResult)
 
         btnValidate.setOnClickListener {
-            val number: Int = etEnterNumber.text.toString().toInt()
-
-            if (isPrimeNumber(number)) println("Es primo")
-            else println("No es primo")
-
+            try {
+                val number = etEnterNumber.text.toString().toInt()
+                tvResult.text = if (number.isPrimeNumber()) "Es primo"
+                else "No es primo"
+            } catch (e: Exception) {
+                Toast.makeText(this, "Ingrese algun valor", Toast.LENGTH_SHORT).show()
+            }
         }
-    }
 
-    fun isPrimeNumber(number: Int): Boolean {
-        val dividers: Int = Math.floorDiv(number, 2)
-//print(dividers)
-//    if (dividers >= 2) {
-        for (divider in 2..dividers) {
-            if (number % divider == 0) return false
-        }
-//    }
-        return true
     }
-
 }
